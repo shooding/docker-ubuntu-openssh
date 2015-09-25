@@ -9,6 +9,9 @@ RUN apt-get -y install openssh-server
 RUN mkdir /var/run/sshd
 
 RUN mkdir /root/.ssh/
+RUN chmod 700 /root/.ssh/
+
+RUN sed -i -r 's/^#?(PermitRootLogin|PermitEmptyPasswords|PasswordAuthentication|X11Forwarding) yes/\1 no/' /etc/ssh/sshd_config
 
 EXPOSE 22
 
